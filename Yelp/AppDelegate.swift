@@ -16,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let businessesNavigationController = storyboard.instantiateViewControllerWithIdentifier("YelpNavigationController") as! UINavigationController
+
+        //let businessesViewController = businessesNavigationController.topViewController as! BusinessesViewController
+        businessesNavigationController.tabBarItem.title = "List View"
+        
+        let mapNavigationController = storyboard.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
+        //let mapViewController = mapNavigationController.topViewController as! MapViewController
+        mapNavigationController.tabBarItem.title = "Map View"
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [businessesNavigationController, mapNavigationController]
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
